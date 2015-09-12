@@ -1,0 +1,27 @@
+.placeholder{
+  //font-family: $font;
+  font-size: 16px;
+  color: #adadad;
+}
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  //font-family: $font;
+  font-size: 16px;
+  color: #adadad;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  //font-family: $font;
+  font-size: 16px;
+  color: #adadad;
+  opacity: 1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  //font-family: $font;
+  font-size: 16px;
+  color: #adadad;
+  opacity: 1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  //font-family: $font;
+  font-size: 16px;
+  color: #adadad;
+}

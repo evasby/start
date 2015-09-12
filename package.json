@@ -1,0 +1,11 @@
+{
+  "name": "Uspeh",
+  "version": "0.1.0",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-sass": "^0.8.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-ftp-push": "^0.3.6",
+    "grunt-ftp-upload": "^0.1.1"
+  }
+}

@@ -1,0 +1,332 @@
+@mixin old-ie {
+  @if $old-ie {
+    @content;
+  }
+}
+@mixin respond($media) {
+  @if not $old-ie {
+    @if $media == mobile {
+      @media only screen and (max-width: 479px) { @content; }
+    }
+    @else if $media == wide-mobile {
+      @media only screen and (min-width: 480px) and (max-width: 767px) { @content; }
+    }
+    @else if $media == all-mobile {
+      @media only screen and (max-width: 767px) { @content; }
+    }
+    @else if $media == tablets {
+      @media only screen and (min-width: 768px) and (max-width: 959px) { @content; }
+    }
+    @else if $media == tablets-mobile {
+      @media only screen and (min-width: 480px) and (max-width: 959px) { @content; }
+    }
+    @if $media == 1920 {
+      @media only screen and (max-width: 1920px) { @content; }
+    }
+    @if $media == 1680 {
+      @media only screen and (max-width: 1679px) { @content; }
+    }
+    @if $media == 1280 {
+      @media only screen and (max-width: 1279px) { @content; }
+    }
+    @if $media == 1024 {
+      @media only screen and (max-width: 1023px) { @content; }
+    }
+    @if $media == 960 {
+      @media only screen and (max-width: 959px) { @content; }
+    }
+    @if $media == 768 {
+      @media only screen and (max-width: 767px) { @content; }
+    }
+    @if $media == 480 {
+      @media only screen and (max-width: 479px) { @content; }
+    }
+  }
+}
+@mixin media_650($flag-ie: false) {
+  @if $old-ie and $flag-ie {
+      @content;
+  } @else if not $old-ie {
+      @media all and (min-device-width: $resolution_650) and (min-device-height: $resolution_650) and (min-width: $resolution_650) {
+          @content;
+      }
+  }
+}
+//*********************************************************************************/
+//  #hack{
+//      color:red; // All browsers
+//    color:red !important;/* All browsers but IE6
+//    _color:red; // Only works in IE6
+//    *color:red; // IE6, IE7
+//    +color:red; // Only works in IE7
+//    *+color:red; // Only works in IE7
+//    color:red\9; // IE6, IE7, IE8, IE9
+//    color:red\0; // IE8, IE9
+//    color:red\9\0; //Only works in IE9
+//   }
+//  . ie10 #hack{
+//      color:red; // Only works in IE10
+//  }
+//*********************************************************************************/
+//*********************************************************************************/
+@mixin inline-block{
+  *display:inline; 
+  *zoom: 1;
+}
+@mixin def-border-radius($radius){
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+//*********************************************************************************/
+@mixin def-border-radiuses($topright, $bottomright, $bottomleft, $topleft){
+  -webkit-border-top-right-radius:$topright;
+  -webkit-border-bottom-right-radius:$bottomright;
+  -webkit-border-bottom-left-radius:$bottomleft;
+  -webkit-border-top-left-radius:$topleft;
+  -moz-border-radius-topright:$topright;
+  -moz-border-radius-bottomright:$bottomright;
+  -moz-border-radius-bottomleft:$bottomleft;
+  -moz-border-radius-topleft:$topleft;
+  border-top-right-radius:$topright;
+  border-bottom-right-radius:$bottomright;
+  border-bottom-left-radius:$bottomleft;
+  border-top-left-radius:$topleft;
+  -moz-background-clip:padding; 
+  -webkit-background-clip:padding-box; 
+  background-clip:padding-box;
+}
+//*********************************************************************************/
+@mixin def-link-colors($normal, $hover, $active, $visited, $focus){
+  color:$normal;
+    &:visited{color:$visited;};
+    &:hover{color:$hover;};
+    &:active{color:$active;}; 
+    &:focus{color:$focus;}; 
+}
+//*********************************************************************************/
+@mixin link($normal, $hover){
+  color:$normal;
+    &:visited{color:$normal;};
+    &:hover{color:$hover;};
+    &:active{color:$normal;}; 
+    &:focus{color:$normal;}; 
+}
+//*********************************************************************************/
+@mixin def-opacity($value){
+  -webkit-opacity:$value;
+  -moz-opacity:$value;
+  opacity:$value;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$value*100});
+}
+//*********************************************************************************/
+@mixin clearfix {
+  &:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    visibility: hidden;
+  }
+  display: inline-block;
+  /* Прячем стили от IE для mac \*/
+  @include old-ie{
+    * html & { height: 1%; }
+    * zoom: 1;
+  }
+  display: block;
+  // close commented backslash hack
+}
+@mixin def-clearfix3 {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+  @include old-ie{
+    * zoom: 1;
+  }
+}
+//*********************************************************************************/
+@mixin def-box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+//*********************************************************************************/
+@mixin def-v-gradient($fromColor:#000, $toColor:#fff) {
+  background-color: $toColor;
+  background-image: -webkit-gradient(linear, left top, left bottom, from($fromColor), to($toColor)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(top, $fromColor, $toColor);
+  background-image:    -moz-linear-gradient(top, $fromColor, $toColor);
+  background-image:     -ms-linear-gradient(top, $fromColor, $toColor);
+  background-image:      -o-linear-gradient(top, $fromColor, $toColor);
+  background-image:         linear-gradient(top, $fromColor, $toColor);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+}
+//*********************************************************************************/
+@mixin def-h-gradient($fromColor:#000, $toColor:#fff) {
+  background-color: $toColor;
+  background-image: -webkit-gradient(linear, left top, right top, from($fromColor), to($toColor));
+  background-image: -webkit-linear-gradient(left, $fromColor, $toColor);
+  background-image:    -moz-linear-gradient(left, $fromColor, $toColor);
+  background-image:     -ms-linear-gradient(left, $fromColor, $toColor);
+  background-image:      -o-linear-gradient(left, $fromColor, $toColor);
+  background-image:         linear-gradient(left, $fromColor, $toColor);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+}
+//*********************************************************************************/
+@mixin def-sticky-footer($height:100px, $root:#root, $root_footer:#root_footer, $footer:#footer){
+  html, body{
+    height: 100%;
+  }
+  #{$root}{
+    clear: both;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin-bottom: -$height;
+  }
+  #{$root} #{$root_footer}{
+    height: $height;
+  }
+  #{$footer}{
+    clear: both;
+    position: relative;
+    height: $height;
+  }
+}
+//*********************************************************************************/
+@mixin def-transition($prop:all, $time:0.1s, $effect:ease-in-out){
+  -webkit-transition: $prop $time $effect;
+  -moz-transition: $prop $time $effect;
+  -o-transition: $prop $time $effect;
+  -ms-transition: $prop $time $effect;
+  transition: $prop $time $effect;
+}
+//*********************************************************************************/
+// generic transform
+@mixin transform($transforms) {
+     -moz-transform: $transforms;
+       -o-transform: $transforms;
+      -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+          transform: $transforms;
+}
+// rotate
+@mixin rotate ($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+ 
+// scale
+@mixin scale($scale) {
+   @include transform(scale($scale));
+} 
+// translate
+@mixin translate ($x, $y) {
+   @include transform(translate($x, $y));
+}
+// skew
+@mixin skew ($x, $y) {
+   @include transform(skew(#{$x}deg, #{$y}deg));
+}
+// double
+@mixin double ($deg, $scale) {
+   -moz-transform: rotate(#{$deg}deg) scale($scale);
+     -o-transform: rotate(#{$deg}deg) scale($scale);
+    -ms-transform: rotate(#{$deg}deg) scale($scale);
+-webkit-transform: rotate(#{$deg}deg) scale($scale);
+        transform: rotate(#{$deg}deg) scale($scale);
+}
+//*********************************************************************************/
+//*********************************************************************************/
+/*&:before{
+  background: url("../image/sub.png") 0px 0px no-repeat;
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 12px;
+  position: absolute;
+  left: -1px;
+  top: 2px;
+}
+@include old-ie{
+  *zoom: expression(
+    this.runtimeStyle.zoom="1",
+    this.appendChild( document.createElement("small") ).className="before"
+  );
+  .before{
+    background: url("../image/sub.png") 0px 0px no-repeat;
+    width: 20px;
+    height: 12px;      
+    position: absolute;
+    left: -1px;
+    top: 2px; 
+  }
+}*/
+//*********************************************************************************/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+html {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+table {
+  //border-collapse: collapse;
+  //border-spacing: 0;
+}
+table, tr, th, td, table, caption, tbody, tfoot, thead {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+a img {
+  border: none;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
