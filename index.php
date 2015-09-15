@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <title>Start - Главная</title>
   <link rel="stylesheet" href="css/all.css" type="text/css" />
-  <link rel="stylesheet" href="css/animate.css" type="text/css"/>
+  <link rel="stylesheet" href="dist/animate.css" type="text/css"/>
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
