@@ -3,7 +3,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="UTF-8">
-  <title>Iphone - Главная</title>
+  <title>Start - Главная</title>
   <link rel="stylesheet" href="css/all.css" type="text/css" />
   <link rel="stylesheet" href="css/animate.css" type="text/css"/>
   <!--[if lt IE 9]>

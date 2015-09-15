@@ -48,7 +48,7 @@ module.exports = function(grunt) {
                     options: {
                         authKey: 'key1',
                         host: 'wfs.by',
-                        dest: '/home/evasby/www/iphone.wfs.by/layout',
+                        dest: '/home/evasby/www/start.wfs.by/layout',
                         //dest: '/home/evasby/www/iphone.wfs.by/sites/all/themes/iphone',
                         port: 21
                     },
@@ -67,7 +67,7 @@ module.exports = function(grunt) {
                     options: {
                         authKey: 'key1',
                         host: 'wfs.by',
-                        dest: '/home/evasby/www/iphone.wfs.by/layout',
+                        dest: '/home/evasby/www/start.wfs.by/layout',
                         port: 21
                     },
                     files: [
@@ -84,7 +84,7 @@ module.exports = function(grunt) {
                     options: {
                         authKey: 'key1',
                         host: 'wfs.by',
-                        dest: '/home/evasby/www/iphone.wfs.by/layout',
+                        dest: '/home/evasby/www/start.wfs.by/layout',
                         port: 21
                     },
                     files: [
@@ -126,6 +126,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-ftp-upload');
     grunt.loadNpmTasks('grunt-ftp-push');
-    grunt.registerTask('default', ['sass', 'ftp_push', 'watch']);
-    //grunt.registerTask('default', ['sass', 'watch']);
+    //grunt.registerTask('default', ['sass', 'ftp_push', 'watch']);
+    grunt.registerTask('default', ['sass', 'watch']);
 };
