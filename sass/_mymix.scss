@@ -139,7 +139,18 @@
   display: block;
   // close commented backslash hack
 }
-@mixin def-clearfix3 {
+@mixin clearfix2 {
+  &:after {
+    content:"";
+    display:table;
+    clear:both;
+  }
+  @include old-ie{
+    * html & { height: 1%; }
+    * zoom: 1;
+  }
+}
+@mixin clearfix3 {
   &:before,
   &:after {
     content: " ";
@@ -149,6 +160,14 @@
     clear: both;
   }
   @include old-ie{
+    * zoom: 1;
+  }
+}
+@mixin clearfix4 {
+  overflow: hidden;
+  @include old-ie{
+    overflow: visible;
+    * html & { height: 1%; }
     * zoom: 1;
   }
 }
@@ -208,12 +227,32 @@
   }
 }
 //*********************************************************************************/
-@mixin def-transition($prop:all, $time:0.1s, $effect:ease-in-out){
-  -webkit-transition: $prop $time $effect;
-  -moz-transition: $prop $time $effect;
-  -o-transition: $prop $time $effect;
-  -ms-transition: $prop $time $effect;
-  transition: $prop $time $effect;
+@mixin def-transition($prop:all, $time:0.1s, $delay:0s, $effect:ease-in-out){
+  //-webkit-transition: $prop $time $effect;
+  -webkit-transition-property: $prop;
+  -webkit-transition-duration: $time;
+  -webkit-transition-delay: $delay;
+  -webkit-transition-timing-function: $effect;
+  //-moz-transition: $prop $time $effect;
+  -moz-transition-property: $prop;
+  -moz-transition-duration: $time;
+  -moz-transition-delay: $delay;
+  -moz-transition-timing-function: $effect;
+  //-o-transition: $prop $time $effect;
+  -o-transition-property: $prop;
+  -o-transition-duration: $time;
+  -o-transition-delay: $delay;
+  -o-transition-timing-function: $effect;
+  //-ms-transition: $prop $time $effect;
+  -ms-transition-property: $prop;
+  -ms-transition-duration: $time;
+  -ms-transition-delay: $delay;
+  -ms-transition-timing-function: $effect;
+  //transition: $prop $time $effect;
+  transition-property: $prop;
+  transition-duration: $time;
+  transition-delay: $delay;
+  transition-timing-function: $effect;
 }
 //*********************************************************************************/
 // generic transform
@@ -248,6 +287,21 @@
     -ms-transform: rotate(#{$deg}deg) scale($scale);
 -webkit-transform: rotate(#{$deg}deg) scale($scale);
         transform: rotate(#{$deg}deg) scale($scale);
+}
+@mixin before{
+  &:before{
+    content: "";
+    @content;
+  }
+  @include old-ie{
+    *zoom: expression(
+    this.runtimeStyle.zoom="1",
+    this.appendChild( document.createElement("small") ).className="before"
+    );
+    .before{
+      @content;
+    }
+  }
 }
 //*********************************************************************************/
 //*********************************************************************************/

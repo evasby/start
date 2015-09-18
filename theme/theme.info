@@ -1,0 +1,9 @@
+screenshot  = screenshot.png
+name        = Название темы
+description = Описание темы
+core        = 7.x
+stylesheets[all][] = css/all.css
+stylesheets-conditional[lt IE 9][all][] = css/all-old-ie.css
+stylesheets[all][] = dist/animate.css
+; scripts[] = js/script-easy.js
+; scripts[] = js/jquery.placeholder.js
